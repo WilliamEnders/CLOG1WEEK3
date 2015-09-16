@@ -8,7 +8,7 @@ public class bulletScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		MainCam = GameObject.Find ("Main Camera");
-		GetComponent<Rigidbody> ().AddForce ((MainCam.transform.forward + new Vector3(0,0.1f,0) + (Random.insideUnitSphere / spreadAmount))* 1000);
+		GetComponent<Rigidbody> ().AddForce ((MainCam.transform.forward + (Random.insideUnitSphere / spreadAmount))* 5000);
 		GetComponent<Rigidbody> ().AddTorque (Random.insideUnitSphere * 100);
 	}
 	

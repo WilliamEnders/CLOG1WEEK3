@@ -3,8 +3,12 @@ using System.Collections;
 
 public class moveAround : MonoBehaviour {
 	public int speed;
+	public int enemiesOnScreen;
+	private bool touchGround;
+	public GameObject grenadeModel;
 	// Use this for initialization
 	void Start () {
+		touchGround = false;
 		speed = 10;
 	}
 	
@@ -19,7 +23,10 @@ public class moveAround : MonoBehaviour {
 			transform.Rotate(Vector3.up * 2);
 		}
 		if (Input.GetKeyDown (KeyCode.Space)) {
+			if(touchGround){
 			GetComponent<Rigidbody> ().AddForce (new Vector3 (0, 300, 0));
+				touchGround = false;
+			}
 		}
 		if (Input.GetKey (KeyCode.Q)) {
 			//transform.Rotate(Vector3.down * 2);
@@ -30,6 +37,15 @@ public class moveAround : MonoBehaviour {
 			//transform.Rotate(Vector3.up * 2);
 			transform.position = transform.position + (transform.right / speed);
 		
+		}
+		if (Input.GetKeyDown (KeyCode.R)) {
+			Instantiate(grenadeModel, transform.position + Vector3.forward, transform.rotation);
+			
+		}
+	}
+	void OnCollisionEnter(Collision collisionInfo){
+		if (collisionInfo.gameObject.tag == "Ground") {
+			touchGround = true;
 		}
 	}
 }

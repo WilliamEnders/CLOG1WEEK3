@@ -6,7 +6,7 @@ public class spawnBullet : MonoBehaviour {
 	public int ammoNum;
 	// Update is called once per frame
 	void Start () {
-		ammoNum = 100;
+		ammoNum = 10000000;
 	}
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Mouse0)) {
@@ -25,7 +25,7 @@ public class spawnBullet : MonoBehaviour {
 		if (Input.GetKeyUp (KeyCode.Mouse1)) {
 			GetComponentInParent<moveAround>().speed = 10;
 			transform.parent.localPosition = new Vector3(0.48f,-0.36f,0.48f);
-			bulletModel.GetComponent<bulletScript>().spreadAmount = 7;
+			bulletModel.GetComponent<bulletScript>().spreadAmount = 8;
 		}
 	}
 }

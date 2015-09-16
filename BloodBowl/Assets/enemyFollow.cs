@@ -6,8 +6,10 @@ public class enemyFollow : MonoBehaviour {
 	private GameObject target;
 	private bool isHit;
 	public int enemyHealth;
+	public bool notDead;
 	// Use this for initialization
 	void Start () {
+		notDead = true;
 		isHit = false;
 		target = GameObject.Find ("Main Camera");
 	}
@@ -22,9 +24,13 @@ public class enemyFollow : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(Collision collisionInfo){
-		if (collisionInfo.gameObject.tag == "Bullet") {
-			if(enemyHealth == 0){
+		if (collisionInfo.gameObject.tag == "Bullet" || collisionInfo.gameObject.tag == "Explosion") {
+			if(enemyHealth <= 0){
 			Destroy(collisionInfo.gameObject);
+				if(notDead){
+			target.GetComponent<moveAround>().enemiesOnScreen -= 1;
+					notDead = false;
+				}
 			Destroy(gameObject);
 			}
 			else{
