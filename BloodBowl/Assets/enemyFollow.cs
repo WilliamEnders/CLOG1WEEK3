@@ -3,6 +3,7 @@ using System.Collections;
 
 public class enemyFollow : MonoBehaviour {
 	public GameObject bloodModel;
+	public GameObject coinModel;
 	private GameObject target;
 	private bool isHit;
 	public int enemyHealth;
@@ -30,6 +31,7 @@ public class enemyFollow : MonoBehaviour {
 				if(notDead){
 			target.GetComponent<moveAround>().enemiesOnScreen -= 1;
 					notDead = false;
+					Instantiate (coinModel, transform.position, new Quaternion(90,0,0,0));
 				}
 			Destroy(gameObject);
 			}

@@ -16,14 +16,14 @@ public class spawnBullet : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKey (KeyCode.Mouse1)) {
-			GetComponentInParent<moveAround>().speed = 30;
+		if (Input.GetKeyDown (KeyCode.Mouse1)) {
+			GetComponentInParent<moveAround>().speed /= 3;
 			transform.parent.localPosition = new Vector3(0f,-0.25f,0.2f);
 			bulletModel.GetComponent<bulletScript>().spreadAmount = 100;
 
 		}
 		if (Input.GetKeyUp (KeyCode.Mouse1)) {
-			GetComponentInParent<moveAround>().speed = 10;
+			GetComponentInParent<moveAround>().speed = 5;
 			transform.parent.localPosition = new Vector3(0.48f,-0.36f,0.48f);
 			bulletModel.GetComponent<bulletScript>().spreadAmount = 8;
 		}
